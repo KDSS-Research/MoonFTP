@@ -1,5 +1,5 @@
 # MoonFTP
-<center><h1>Current Version: 1.1</h1></center>
+<center>Current Version: 1.1<</center>
 Simple FTP client with various settings. You can use for host ftp server! :D <br>
 
 First Start Docs: <a href="https://github.com/KDSS-Research/MoonFTP/blob/main/docs/firststart.md">View</a> <br>
