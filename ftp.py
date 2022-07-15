@@ -175,7 +175,7 @@ def AddUser(id):
     else:
         print('['+lcl_config.get("msg", "info")+'] '+write_localisation("main", "profile_found")+' '+str(id))
         for i in range(0,len(eval(serv_config.get("server", "roles")))):
-            if user_config.get(str(id), "login") == eval(serv_config.get("server", "roles"))[str(i+1)]['name']:
+            if user_config.get(str(id), "type") == eval(serv_config.get("server", "roles"))[str(i+1)]['name']:
                 perm1 = eval(serv_config.get("server", "roles"))[str(i+1)]
                 authorizer.add_user(user_config.get(str(id), "login"), user_config.get(str(id), "password"), serv_config.get("server", "home"), perm1['perms'])
                 
