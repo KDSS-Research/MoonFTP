@@ -15,4 +15,6 @@ Server Config contains at "FTP" folder with name "server.ini".
 "home" key is responsible for home directory path in ftp server.  
 "key" key is responsible for contain key which used in password encryption, i dont recommend edit this key.  
 "roles" key is responsible for contain roles for ftp server users, i dont recommend edit this key.  
+"enable_keywords" key is responsible for enable/disable keywords for localisation, i dont recommend edit this key.  
+"enable_console" key is responsible for Console Supporting, but its now in beta.  
 
