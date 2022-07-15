@@ -1,7 +1,19 @@
 # MoonFTP
-<center>Current Version: 1.1</center><br>
-Simple FTP client with various settings. You can use for host ftp server! :D <br>
+<center><h1>Current Version: 1.1</h1></center>
 
+Simple FTP client with various settings. You can use for host ftp server! :D <br><br><br>
+
+Features:<br>
+  ✔️ Simple Interface<br>
+  ✔️ Easy for config<br>
+  ✔️ Cross-platform<br>
+  ✔️ Fast<br>
+  ✔️ Automatic Module Setup<br>
+  ✔️ Password Encryption<br>
+  ✔️ Open Source<br>
+  ❌ Alone Developer<br>
+  ❌ TLS Not supported<br>
+<br><br>
 First Start Docs: <a href="https://github.com/KDSS-Research/MoonFTP/blob/main/docs/firststart.md">View</a> <br>
 
 <h1>Donations</h1>
