@@ -16,7 +16,7 @@ import configparser
 # Creating Config Profile
 print('-Reading config...')
 
-user_config = configparser.ConfigParser()
+user_config = configparser.ConfigParser() #enable_antistress = True
 user_config.read('./FTP/users.ini')
 serv_config = configparser.ConfigParser()
 serv_config.read('./FTP/server.ini')
@@ -48,7 +48,29 @@ if serv_config.get('beta', 'enable_console') == 'True':
     args = parser.parse_args()
     
 def write_localisation(section, name):
-    try:
+    if serv_config.get('server', 'enable_antistress') == 'True':
+        try:
+            content = lcl_config.get(section, name)
+            if serv_config.get('server', 'enable_keywords') == 'True':
+                if keyword_config.get("keymarks", "ver") in content:
+                    if keyword_config.get("keymarks", "name") in content:
+                        tmp = content.replace(keyword_config.get("keymarks", "ver"),lcl_config.get("title", "version"))
+                        return tmp.replace(keyword_config.get("keymarks", "name"),lcl_config.get("title", "name"))
+                    else:
+                        return content.replace(keyword_config.get("keymarks", "ver"),lcl_config.get("title", "version"))
+                elif keyword_config.get("keymarks", "name") in content:
+                    if keyword_config.get("keymarks", "ver") in content:
+                        tmp = content.replace(keyword_config.get("keymarks", "name"),lcl_config.get("title", "name"))
+                        return tmp.replace(keyword_config.get("keymarks", "ver"),lcl_config.get("title", "version"))
+                    else:
+                        return content.replace(keyword_config.get("keymarks", "name"),lcl_config.get("title", "name"))
+                else:
+                    return content
+            else:
+                return content
+        except:
+            print('['+lcl_config.get("msg", "error")+'] Localisation error')
+    else:
         content = lcl_config.get(section, name)
         if serv_config.get('server', 'enable_keywords') == 'True':
             
@@ -68,9 +90,7 @@ def write_localisation(section, name):
                 return content
         else:
             return content
-           
-    except:
-        print('['+lcl_config.get("msg", "error")+'] Localisation not found!')
+    
 
 try:
     from pyftpdlib.handlers import FTPHandler
@@ -103,34 +123,68 @@ if serv_config.get("server", "security") == 'True':
             print('['+lcl_config.get("msg", "warn")+'] '+write_localisation("main", "remove_all_users_warn"))
             key_answer = input('['+lcl_config.get("msg", "answer")+'] '+write_localisation("main", "continue")+' (Y/N): ')
             if key_answer == 'Y' or key_answer == 'y':
-                print('['+lcl_config.get("msg", "info")+'] '+write_localisation("main", "generating"))
-                print('['+lcl_config.get("msg", "info")+'] '+write_localisation("main", "backuping"))
-                shutil.copy('./FTP/users.ini', './FTP/users.backup')
-                cipher_key = Fernet.generate_key().decode('ascii')
-                serv_config.set("server", "key", cipher_key)
-                for i in range(0,int(user_config.get("main", "count"))):
-                    user_config.remove_section(str(i+1))
-                user_config.set("main", "count", "0")
-                with open('./FTP/users.ini', "w") as config_file_1:
-                    user_config.write(config_file_1)
-                with open('./FTP/server.ini', "w") as config_file_2:
-                    serv_config.write(config_file_2)
+                if serv_config.get('server', 'enable_antistress') == 'True':
+                    try:
+                        print('['+lcl_config.get("msg", "info")+'] '+write_localisation("main", "generating"))
+                        print('['+lcl_config.get("msg", "info")+'] '+write_localisation("main", "backuping"))
+                        shutil.copy('./FTP/users.ini', './FTP/users.backup')
+                        cipher_key = Fernet.generate_key().decode('ascii')
+                        serv_config.set("server", "key", cipher_key)
+                        for i in range(0,int(user_config.get("main", "count"))):
+                            user_config.remove_section(str(i+1))
+                        user_config.set("main", "count", "0")
+                        with open('./FTP/users.ini', "w") as config_file_1:
+                            user_config.write(config_file_1)
+                        with open('./FTP/server.ini', "w") as config_file_2:
+                            serv_config.write(config_file_2)
+                    except:
+                        print('['+lcl_config.get("msg", "error")+'] ')
+                else:
+                    print('['+lcl_config.get("msg", "info")+'] '+write_localisation("main", "generating"))
+                    print('['+lcl_config.get("msg", "info")+'] '+write_localisation("main", "backuping"))
+                    shutil.copy('./FTP/users.ini', './FTP/users.backup')
+                    cipher_key = Fernet.generate_key().decode('ascii')
+                    serv_config.set("server", "key", cipher_key)
+                    for i in range(0,int(user_config.get("main", "count"))):
+                        user_config.remove_section(str(i+1))
+                    user_config.set("main", "count", "0")
+                    with open('./FTP/users.ini', "w") as config_file_1:
+                        user_config.write(config_file_1)
+                    with open('./FTP/server.ini', "w") as config_file_2:
+                        serv_config.write(config_file_2)
         else:
             print('['+lcl_config.get("msg", "warn")+'] '+write_localisation("main", "remove_all_users_warn"))
             key_answer = input('['+lcl_config.get("msg", "answer")+'] '+write_localisation("main", "continue")+' (Y/N): ')
             if key_answer == 'Y' or key_answer == 'y':
-                print('['+lcl_config.get("msg", "info")+'] '+write_localisation("main", "generating"))
-                print('['+lcl_config.get("msg", "info")+'] '+write_localisation("main", "backuping"))
-                shutil.copy('./FTP/users.ini', './FTP/users.backup')
-                cipher_key = Fernet.generate_key().decode('ascii')
-                serv_config.set("server", "key", cipher_key)
-                for i in range(0,int(user_config.get("main", "count"))):
-                    user_config.remove_section(str(i+1))
-                user_config.set("main", "count", "0")
-                with open('./FTP/users.ini', "w") as config_file_1:
-                    user_config.write(config_file_1)
-                with open('./FTP/server.ini', "w") as config_file_2:
-                    serv_config.write(config_file_2)
+                if serv_config.get('server', 'enable_antistress') == 'True':
+                    try:
+                        print('['+lcl_config.get("msg", "info")+'] '+write_localisation("main", "generating"))
+                        print('['+lcl_config.get("msg", "info")+'] '+write_localisation("main", "backuping"))
+                        shutil.copy('./FTP/users.ini', './FTP/users.backup')
+                        cipher_key = Fernet.generate_key().decode('ascii')
+                        serv_config.set("server", "key", cipher_key)
+                        for i in range(0,int(user_config.get("main", "count"))):
+                            user_config.remove_section(str(i+1))
+                        user_config.set("main", "count", "0")
+                        with open('./FTP/users.ini', "w") as config_file_1:
+                            user_config.write(config_file_1)
+                        with open('./FTP/server.ini', "w") as config_file_2:
+                            serv_config.write(config_file_2)
+                    except:
+                        print('['+lcl_config.get("msg", "error")+'] ')
+                else:
+                    print('['+lcl_config.get("msg", "info")+'] '+write_localisation("main", "generating"))
+                    print('['+lcl_config.get("msg", "info")+'] '+write_localisation("main", "backuping"))
+                    shutil.copy('./FTP/users.ini', './FTP/users.backup')
+                    cipher_key = Fernet.generate_key().decode('ascii')
+                    serv_config.set("server", "key", cipher_key)
+                    for i in range(0,int(user_config.get("main", "count"))):
+                        user_config.remove_section(str(i+1))
+                    user_config.set("main", "count", "0")
+                    with open('./FTP/users.ini', "w") as config_file_1:
+                        user_config.write(config_file_1)
+                    with open('./FTP/server.ini', "w") as config_file_2:
+                        serv_config.write(config_file_2)
 
 clear()
 
@@ -183,6 +237,8 @@ def AddUser(id):
 if user_config.get("main", "count") != '0':
     for i in range(0,int(user_config.get("main", "count"))):
         AddUser(i+1)
+if serv_config.get("server", "enable_anon_users") == 'True':
+    authorizer.add_anonymous(serv_config.get("server", "anon_home"))
 
 else:
     print('['+lcl_config.get("msg", "warn")+'] '+write_localisation("main", "no_users_found"))
