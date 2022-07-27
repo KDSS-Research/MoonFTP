@@ -9,5 +9,8 @@ Server Config contains at "FTP" folder with name "server.ini".
 "roles" key is responsible for contain roles for ftp server users, i dont recommend edit this key.  
 "enable_keywords" key is responsible for enable/disable keywords for localisation, i dont recommend edit this key.  
 "enable_console" key is responsible for Console Supporting, but its now in beta.  
+"enable_antistress" key is responsible for server not crashing when it have error, but its now in beta.  
+"enable_anon_users" key is responsible for enabling/disabling anonymous users.
+"anon_home" key is responsible for locate anonymous user's directory.
 
 For automatic start i recommend write to "autostart" section "ip = <current_ip>" for auto ip get and start.
