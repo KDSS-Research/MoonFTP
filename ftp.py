@@ -237,11 +237,11 @@ def AddUser(id):
 if user_config.get("main", "count") != '0':
     for i in range(0,int(user_config.get("main", "count"))):
         AddUser(i+1)
+else:
+    print('['+lcl_config.get("msg", "warn")+'] '+write_localisation("main", "no_users_found"))
 if serv_config.get("server", "enable_anon_users") == 'True':
     authorizer.add_anonymous(serv_config.get("server", "anon_home"))
 
-else:
-    print('['+lcl_config.get("msg", "warn")+'] '+write_localisation("main", "no_users_found"))
     
 print('['+lcl_config.get("msg", "info")+'] '+write_localisation("main", "starting_server"))
 
