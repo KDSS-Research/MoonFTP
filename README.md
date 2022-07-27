@@ -14,7 +14,7 @@ Features:<br>
   ❌ Alone Developer<br>
   ❌ TLS Not supported<br>
 <br><br>
-First Start Docs: <a href="https://github.com/KDSS-Research/MoonFTP/blob/main/docs/firststart.md">View</a> <br>
+Docs: <a href="https://github.com/KDSS-Research/MoonFTP/blob/main/docs/docs.md">View</a> <br>
 
 <h1>Donations</h1>
 <center><a href="https://www.donationalerts.com/r/coolman96"><img src="https://raw.githubusercontent.com/KDSS-Research/MoonFTP/main/.github/donation_alerts.png"></a></center><br>
