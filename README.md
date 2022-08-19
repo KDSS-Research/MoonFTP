@@ -1,4 +1,5 @@
 # MoonFTP
+The author is not responsible for any actions with the program!
 <center><h1>Current Version: 1.2</h1></center>
 
 Simple FTP client with various settings. You can use for host ftp server! :D <br><br><br>
