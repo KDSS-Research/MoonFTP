@@ -198,13 +198,15 @@ if serv_config.get("server", "security") == 'True':
     cipher = Fernet(key)
 if serv_config.get("server", "autostart") == 'True':
     if serv_config.get("autostart", "ip") == keyword_config.get("keymarks", "getip"):
-        ip = socket.getsockname()
+        ip = socket.gethostbyname(socket.gethostname())
+        print('['+lcl_config.get("msg", "info")+'] '+'Running on: '+ip)
     else:
         ip = serv_config.get("autostart", "ip")
     port = serv_config.get("autostart", "port")
 elif autostart_active == True:
     if serv_config.get("autostart", "ip") == keyword_config.get("keymarks", "getip"):
-        ip = socket.getsockname()
+        ip = socket.gethostbyname(socket.gethostname())
+        print('['+lcl_config.get("msg", "info")+'] '+'Running on: '+ip)
     else:
         ip = serv_config.get("autostart", "ip")
     port = serv_config.get("autostart", "port")
