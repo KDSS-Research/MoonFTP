@@ -12,7 +12,6 @@ Features:<br>
   ✔️ Automatic Module Setup<br>
   ✔️ Password Encryption<br>
   ✔️ Open Source<br>
-  ❌ Alone Developer<br>
   ❌ TLS Not supported<br>
 <br><br>
 Docs: <a href="https://github.com/KDSS-Research/MoonFTP/blob/main/docs/docs.md">View</a> <br>
