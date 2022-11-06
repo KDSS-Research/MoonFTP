@@ -69,7 +69,7 @@ def write_localisation(section, name):
             else:
                 return content
         except:
-            print('['+lcl_config.get("msg", "error")+'] Localisation error')
+            print('[ERROR] Localisation error')
     else:
         content = lcl_config.get(section, name)
         if serv_config.get('server', 'enable_keywords') == 'True':
@@ -199,14 +199,14 @@ if serv_config.get("server", "security") == 'True':
 if serv_config.get("server", "autostart") == 'True':
     if serv_config.get("autostart", "ip") == keyword_config.get("keymarks", "getip"):
         ip = socket.gethostbyname(socket.gethostname())
-        print('['+lcl_config.get("msg", "info")+'] '+'Running on: '+ip)
+        print('['+lcl_config.get("msg", "info")+'] '+lcl_config.get("main", "running_on")+ip)
     else:
         ip = serv_config.get("autostart", "ip")
     port = serv_config.get("autostart", "port")
 elif autostart_active == True:
     if serv_config.get("autostart", "ip") == keyword_config.get("keymarks", "getip"):
         ip = socket.gethostbyname(socket.gethostname())
-        print('['+lcl_config.get("msg", "info")+'] '+'Running on: '+ip)
+        print('['+lcl_config.get("msg", "info")+'] '+lcl_config.get("main", "running_on")+ip)
     else:
         ip = serv_config.get("autostart", "ip")
     port = serv_config.get("autostart", "port")
