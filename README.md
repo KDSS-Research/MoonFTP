@@ -10,9 +10,11 @@ Features:<br>
   ✔️ Cross-platform<br>
   ✔️ Fast<br>
   ✔️ Automatic Module Setup<br>
-  ✔️ Password Encryption<br>
+  ✔️ Password Hashing<br>
   ✔️ Open Source<br>
-  ❌ TLS Not supported<br>
+  ✔️ TLS supported<br>
+  ✔️ Can create limits<br>
+  ✔️ Windows/Unix Type can created<br>
 <br><br>
 Docs: <a href="https://github.com/KDSS-Research/MoonFTP/blob/main/docs/docs.md">View</a> <br>
 
