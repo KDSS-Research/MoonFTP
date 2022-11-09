@@ -12,8 +12,6 @@ user_config = configparser.ConfigParser()
 user_config.read('./FTP/users.ini')
 
 if serv_config.get("server", "security") == 'True':
-    key = serv_config.get("server", "key").encode('ascii')
-    cipher = Fernet(key)
     login = input('Login: ')
     passw = input('Password: ')
     type_oa = input('Type of account: ')
